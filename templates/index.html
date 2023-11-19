@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Text Extractor</title>
+</head>
+<body>
+    <h1>PDF Text Extractor</h1>
+    <p id="pdfText">{{ text }}</p>
+    <script>
+        
+        var pdfText = document.getElementById('pdfText').textContent;
+     
+        
+    //    console.log(pdfText);
+    
+        var datePattern = /Dated : (\d{2}-\d{2}-\d{4})/;
+        var docnopattern = /Doc No\. (\d+\/\d+\/[A-Z]\d+-\d+)/;
+        var remarkspattern = /[A-Z]+(\d{6})/;
+        var grandtotal = /:(\d+(\.\d+)?)\.00/;
+        var titlePattern =/([A-Z]+)\[[A-Z]+(\d{4})\]/;
+        // var match = pdfText.match(titlePattern);
+        var ans = ""
+        if( pdfText.match(datePattern))
+        {
+          console.log(pdfText.match(datePattern)[0]);  
+        }
+        if( pdfText.match(docnopattern))
+        {
+           console.log(pdfText.match(docnopattern)[0]);
+        }
+        if( pdfText.match(grandtotal))
+        {
+           console.log("Grand Total"+pdfText.match(grandtotal)[0]);
+        }
+        if( pdfText.match(remarkspattern))
+        {
+           console.log("Remarks : "+pdfText.match(remarkspattern)[0]);
+        }
+    </script>
+</body>
+</html>
